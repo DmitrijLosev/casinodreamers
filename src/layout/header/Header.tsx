@@ -53,7 +53,7 @@ const LogoHeader = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  @media screen and (max-width: 550px) {
+  @media screen and (max-width: 1250px) {
     height: 60px;
     & > a > picture > * {
       width: 62px;
@@ -63,19 +63,27 @@ const LogoHeader = styled.div`
 `
 const HeaderText = styled.div`
   background: url(${bgImage}) no-repeat center top;
-  
   @media screen and (max-width: 2200px) {
     height: 500px;
   }
-
+  @media screen and (max-width: 2000px) {
+    height: 400px;
+  }
+  @media screen and (max-width: 1700px) {
+    height: 350px;
+  }
+  @media screen and (max-width: 1500px) {
+    height: 300px;
+  }
   @media screen and (max-width: 1250px) {
     background: url(${bgImage1250}) no-repeat center top;
-    background-position-y: 0;
-    height: 460px;
+    height: 270px;
+    background-position-y: -60px;
   }
   @media screen and (max-width: 950px) {
     background: url(${bgImage950}) no-repeat center top;
     height: 330px;
+    background-position-y: 0;
   }
   @media screen and (max-width: 550px) {
     background: url(${bgImage750}) no-repeat center top;

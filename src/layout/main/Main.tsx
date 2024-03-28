@@ -150,9 +150,12 @@ export const Main :FC<{setIsSearching:(value:boolean)=>void,isSearching:boolean}
 
 const StyledMain = styled.main`
   width: 100%;
-  padding-top: 80px;
+  padding-top: 30px;
   @media screen and (max-width: 840px) {
     padding-top: 40px;
+  }
+  @media screen and (max-width: 550px) {
+    padding-top: 20px;
   }
   & > div > ${HeaderTextWrapper} {
     @media screen and (min-width: 841px) {
@@ -160,6 +163,9 @@ const StyledMain = styled.main`
     }
     @media screen and (max-width: 840px) {
       display: flex;
+    }
+    @media screen and (max-width: 550px) {
+      padding-bottom: 20px;
     }
     color: black;
     max-width: unset;
@@ -180,7 +186,7 @@ const StyledHeader = styled.header`
   font-size: 32px;
   padding: 0 50px;
   margin-bottom: 40px;
-  @media screen and (max-width: 950px) {
+  @media screen and (max-width: 1250px) {
     font-size: 26px;
     line-height: 30px;
     text-align: center;
@@ -191,7 +197,6 @@ const StyledHeader = styled.header`
     line-height: 20px;
     font-weight: 500;
   }
-
 `
 const ContentSection = styled.section`
   margin-bottom: 80px;

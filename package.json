@@ -1,5 +1,6 @@
 {
   "name": "casninodreamers",
+  "homepage": "http://DmitrijLosev.github.io/casinodreamers/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,11 +8,14 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@types/react-star-rating-component": "^1.4.4",
     "@types/react-star-ratings": "^2.3.3",
+    "gh-pages": "^6.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-rating": "^2.0.5",
