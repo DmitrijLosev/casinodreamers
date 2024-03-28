@@ -8,10 +8,12 @@ import bgImage750 from "../../assets/image/bg750.png";
 import bgMobile from "../../assets/image/bgMobile.png";
 import Typewriter from "react-ts-typewriter";
 import {FC} from "react";
+import {useLocation} from "react-router-dom";
 
 
 export const Header:FC<{setIsSearching:(value:boolean)=>void,isSearching:boolean}> = ({setIsSearching,isSearching}) => {
 
+    const path=useLocation().key;
     const onFinishedHandler = () =>{
         setTimeout(()=>{setIsSearching(false)},500)
     }
@@ -30,18 +32,18 @@ export const Header:FC<{setIsSearching:(value:boolean)=>void,isSearching:boolean
                     </picture>
                 </a>
             </LogoHeader>
-            <HeaderText>
+            {path === "default" && <HeaderText>
                 <Container>
                     <HeaderTextWrapper>
                         <Heading className="page_heading">Welcome to the best guide of Online Casinos</Heading>
                         {/*<p>We are listing only trusted high standard casinos tested by ourselves. Here you will find an extensive list of casinos that accepts real money.</p>
                         <p>Enjoy your stay at CasinoDreamers and good luck!</p>*/}
                         {isSearching &&<p><Typewriter text='Searching for the best casino offers for You…' cursor={true}
-                                       onFinished={onFinishedHandler}
+                                                      onFinished={onFinishedHandler}
                         /></p>}
                     </HeaderTextWrapper>
                 </Container>
-            </HeaderText>
+            </HeaderText>}
         </>
     );
 };

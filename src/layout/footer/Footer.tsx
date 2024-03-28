@@ -5,6 +5,7 @@ import instagram from "../../assets/icon/instagram.svg";
 import youtube from "../../assets/icon/youtube.svg";
 import begamble from "../../assets/icon/begamble.svg";
 import icon18 from "../../assets/icon/icon18.svg";
+import {NavLink} from "react-router-dom";
 
 export const Footer = () => {
     return (
@@ -15,9 +16,9 @@ export const Footer = () => {
                     <InfoFooterWrapper>
                         <InfoNavMenu>
                             <ul>
-                                <li><a>About Us</a></li>
-                                <li><a>Disclaimer</a></li>
-                                <li><a>Privacy Policy</a></li>
+                                <li><NavLink to={"/about"}>About Us</NavLink></li>
+                                <li><NavLink to={"/disclaimer"}>Disclaimer</NavLink></li>
+                                <li><NavLink to={"/privacy-policy"}>Privacy Policy</NavLink></li>
                             </ul>
                         </InfoNavMenu>
                         <InfoFooterText>
