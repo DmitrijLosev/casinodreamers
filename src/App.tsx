@@ -18,7 +18,7 @@ function App() {
         <>
             <Header isSearching={isSearchingCasino} setIsSearching={setIsSearching}/>
             <Routes>
-                <Route path={"/casinodreamers"} element={<Main setIsSearching={setIsSearching} isSearching={isSearchingCasino}/>}/>
+                <Route path={"/"} element={<Main setIsSearching={setIsSearching} isSearching={isSearchingCasino}/>}/>
                 <Route path={"/about"} element={<AboutUs />}/>
                 <Route path={"/disclaimer"} element={<Disclaimer />}/>
                 <Route path={"/privacy-policy"} element={<PrivacyPolicy />}/>

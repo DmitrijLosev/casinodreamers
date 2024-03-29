@@ -8,12 +8,12 @@ import bgImage750 from "../../assets/image/bg750.png";
 import bgMobile from "../../assets/image/bgMobile.png";
 import Typewriter from "react-ts-typewriter";
 import {FC} from "react";
-import {useLocation} from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
 
 
 export const Header:FC<{setIsSearching:(value:boolean)=>void,isSearching:boolean}> = ({setIsSearching,isSearching}) => {
 
-    const path=useLocation().key;
+    const path=useLocation().pathname;
     const onFinishedHandler = () =>{
         setTimeout(()=>{setIsSearching(false)},500)
     }
@@ -21,7 +21,7 @@ export const Header:FC<{setIsSearching:(value:boolean)=>void,isSearching:boolean
     return (
         <>
             <LogoHeader>
-                <a href="https://casinodreamers.com/" rel="home" aria-current="page">
+                <NavLink to="/" rel="home" aria-current="page">
                     <picture>
                         <source
                             srcSet={logoWebp}
@@ -30,9 +30,9 @@ export const Header:FC<{setIsSearching:(value:boolean)=>void,isSearching:boolean
                              src={logoPng}
                              alt="CasinoDreamers.com" decoding="async"/>
                     </picture>
-                </a>
+                </NavLink>
             </LogoHeader>
-            {path === "default" && <HeaderText>
+            {path === "/" && <HeaderText>
                 <Container>
                     <HeaderTextWrapper>
                         <Heading className="page_heading">Welcome to the best guide of Online Casinos</Heading>
