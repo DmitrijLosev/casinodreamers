@@ -36,7 +36,7 @@ export const CasinoReview = () => {
 
                     <CasinoReviewWrappers>
                         <CasinoReviewLink
-                            href="https://media.affiliatestonybet.com/redirect.aspx?pid=169136&amp;bid=1983&amp;lpid=1302"
+                            href="https://tonybet.lv/promotions/welcome-casino-cashback?btag=669146_67987921D95F461385C6412FF09A5FDE"
                             target="_blank">
                             <picture>
                                 <source
