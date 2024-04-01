@@ -246,12 +246,13 @@ const CasinoLink = styled.a`
     border-radius: 5px;
   }
 `
-const CasinoGift = styled.div`
+export const CasinoGift = styled.div`
   max-width: 180px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: #414141;
 
   & > h3 {
     font-size: 16px;
@@ -277,7 +278,7 @@ const CasinoGift = styled.div`
     display: none;
   }
 `
-const RatingWrapper = styled.div`
+export const RatingWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -302,7 +303,7 @@ const RatingWrapper = styled.div`
   }
 `
 
-const RatingText = styled.p`
+export const RatingText = styled.p`
   font-weight: 700;
   font-size: 22px;
   text-align: center;
@@ -324,7 +325,7 @@ const RatingText = styled.p`
   }
 `
 
-const PaymentsList = styled.div`
+export const PaymentsList = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 10px;
@@ -342,7 +343,7 @@ const PaymentsList = styled.div`
   }
 `
 
-const PaymentItem = styled.div`
+export const PaymentItem = styled.div`
   width: 70px;
   height: 40px;
   background: #fafafa;
@@ -357,7 +358,7 @@ const PaymentItem = styled.div`
     max-height: 30px;
   }
 `
-const PaymentsPopUpList = styled(PaymentsList)<{ showPaymentPopUp: boolean }>`
+export const PaymentsPopUpList = styled(PaymentsList)<{ showPaymentPopUp: boolean }>`
   position: absolute;
   top: 0;
   background: #FFF;
@@ -373,7 +374,6 @@ const PaymentsPopUpList = styled(PaymentsList)<{ showPaymentPopUp: boolean }>`
     opacity: unset;
     visibility: unset;
   `}
-  
 `
 const PaymentShowMore = styled.span`
   padding-top: 10px;
@@ -381,7 +381,8 @@ const PaymentShowMore = styled.span`
   display: block;
   text-align: center;
   text-decoration: underline;
-
+  color: #272727;
+  
   &:hover {
     cursor: pointer;
   }
@@ -390,7 +391,7 @@ const PaymentShowMore = styled.span`
     display: none;
   }
 `
-const PaymentWrapper = styled.div`
+export const PaymentWrapper = styled.div`
   @media screen and (max-width: 550px) {
     display: none;
   }

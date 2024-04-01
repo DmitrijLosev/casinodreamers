@@ -8,6 +8,7 @@ import {AboutUs} from "./layout/pages/about/AboutUs.tsx";
 import {Disclaimer} from "./layout/pages/disclaimer/Disclaimer.tsx";
 import {PrivacyPolicy} from "./layout/pages/privacy/PrivacyPolicy.tsx";
 import {Error404} from "./layout/pages/error404/Error404.tsx";
+import {CasinoReview} from "./layout/pages/review/CasinoReview.tsx";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
                 <Route path={"/about"} element={<AboutUs />}/>
                 <Route path={"/disclaimer"} element={<Disclaimer />}/>
                 <Route path={"/privacy-policy"} element={<PrivacyPolicy />}/>
+                <Route path={"/tonybet"} element={<CasinoReview />}/>
                 <Route path={"/*"} element={<Error404/>}/>
             </Routes>
             <Footer/>

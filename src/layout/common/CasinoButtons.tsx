@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {FC} from "react";
+import {NavLink} from "react-router-dom";
 
 
 export const CasinoButtons:FC<{buttonText:string}> = ({buttonText}) => {
@@ -8,7 +9,7 @@ export const CasinoButtons:FC<{buttonText:string}> = ({buttonText}) => {
             <BonusButton
                 href="https://media.affiliatestonybet.com/redirect.aspx?pid=169136&amp;bid=1983&amp;lpid=1302"
                 target="_blank">{buttonText}</BonusButton>
-            <ReviewButton href="#">Read Review</ReviewButton>
+            <ReviewButton to="/tonybet">Read Review</ReviewButton>
         </ButtonWrapper>
     );
 };
@@ -28,7 +29,7 @@ export const ButtonWrapper = styled.div`
   }
 `
 
-const BonusButton = styled.a`
+export const BonusButton = styled.a`
   color: #fff;
   display: inline-block;
   padding: 10px 10px;
@@ -61,7 +62,7 @@ const BonusButton = styled.a`
     width: 100%;
   }
 `
-const ReviewButton = styled.a`
+const ReviewButton = styled(NavLink)`
   font-weight: 600;
   font-size: 14px;
   line-height: 17px;

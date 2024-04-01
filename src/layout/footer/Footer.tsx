@@ -11,7 +11,6 @@ export const Footer = () => {
     return (
         <StyledFooter>
             <FooterContainer>
-
                 <FooterContantWrapper>
                     <InfoFooterWrapper>
                         <InfoNavMenu>
