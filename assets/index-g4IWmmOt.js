@@ -197,7 +197,7 @@ Error generating stack: `+o.message+`
   font-size: 20px;
   line-height: 20px;
   color: #272727;
-`,od=({buttonText:e})=>s.jsxs(f0,{children:[s.jsx(ld,{href:"https://media.affiliatestonybet.com/redirect.aspx?pid=169136&bid=1983&lpid=1302",target:"_blank",children:e}),s.jsx(Pm,{to:"/tonybet",children:"Read Review"})]}),f0=E.div`
+`,od=({buttonText:e})=>s.jsxs(f0,{children:[s.jsx(ld,{href:"https://tonybet.lv/promotions/welcome-casino-cashback?btag=669146_67987921D95F461385C6412FF09A5FDE",target:"_blank",children:e}),s.jsx(Pm,{to:"/tonybet",children:"Read Review"})]}),f0=E.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
