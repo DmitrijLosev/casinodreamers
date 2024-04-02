@@ -523,6 +523,9 @@ const CasinoReviewMobileRatingWrapper = styled.div`
     gap:35px;
     align-items: start;
   }
+  @media screen and (max-width: 370px) {
+    gap:5px;
+  }
   & > ${RatingWrapper} {
     @media screen and (max-width: 550px) {
       display: flex;
