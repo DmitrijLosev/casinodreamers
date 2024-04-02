@@ -2,13 +2,13 @@ import {FC} from "react";
 import styled from "styled-components";
 
 type AdvItemPropsType = {
-    webp:string
-    png:string
-    title:string
-    text:string
+    webp: string
+    png: string
+    title: string
+    text: string
 }
 
-export const AdvantageItem:FC<AdvItemPropsType> = ({webp,png,title,text}) => {
+export const AdvantageItem: FC<AdvItemPropsType> = ({webp, png, title, text}) => {
     return (
         <AdvantageItemWrapper>
             <picture>
@@ -20,7 +20,7 @@ export const AdvantageItem:FC<AdvItemPropsType> = ({webp,png,title,text}) => {
             </picture>
 
             <AdvantageItemHeader>{title}</AdvantageItemHeader>
-<AdvantageItemText>{text}</AdvantageItemText>
+            <AdvantageItemText>{text}</AdvantageItemText>
 
         </AdvantageItemWrapper>
 
@@ -35,13 +35,13 @@ const AdvantageItemWrapper = styled.div`
   margin-top: 68px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
   border-radius: 5px;
-  
+
   & > picture {
     position: absolute;
-    top:-59px;
-    left:calc(50% - 60px);
+    top: -59px;
+    left: calc(50% - 60px);
   }
-  
+
   @media screen and (max-width: 950px) {
     width: 45%;
   }

@@ -8,13 +8,13 @@ export const CasinoList:FC<{showBestCasino:boolean}> = ({showBestCasino}) => {
 
 
     return (
-        <CasinoListWrapper showBestCasino={showBestCasino}>
+        <CasinoListWrapper $showBestCasino={showBestCasino}>
             <CasinoItem/>
         </CasinoListWrapper>
     );
 };
 
-export const CasinoListWrapper = styled.section<{showBestCasino:boolean}>`
+export const CasinoListWrapper = styled.section<{$showBestCasino:boolean}>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,7 +26,7 @@ export const CasinoListWrapper = styled.section<{showBestCasino:boolean}>`
   transition: opacity 0.5s ease, visibility 0.5s ease;
   opacity: 0;
   visibility: hidden;
-  ${props => props.showBestCasino && css<{ showBestCasino: boolean }>`
+  ${props => props.$showBestCasino && css<{ $showBestCasino: boolean }>`
     opacity: unset;
     visibility: unset;
   `}

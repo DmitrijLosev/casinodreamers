@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import logoWebp from "../../assets/image/logo.webp";
-import logoPng from "../../assets/image/logo.png";
+import logo from "../../assets/image/logo.svg";
 import bgImage from "../../assets/image/home-bg.png";
 import bgImage1250 from "../../assets/image/bg1250.png";
 import bgImage950 from "../../assets/image/bg950.png";
@@ -22,14 +21,9 @@ export const Header:FC<{setIsSearching:(value:number)=>void,isSearching:number}>
         <>
             <LogoHeader>
                 <NavLink to="/" rel="home" aria-current="page">
-                    <picture>
-                        <source
-                            srcSet={logoWebp}
-                            type="image/webp"/>
                         <img width="92" height="72"
-                             src={logoPng}
+                             src={logo}
                              alt="CasinoDreamers.com" decoding="async"/>
-                    </picture>
                 </NavLink>
             </LogoHeader>
             {path === "/" && <HeaderText>
@@ -38,9 +32,7 @@ export const Header:FC<{setIsSearching:(value:number)=>void,isSearching:number}>
                         <Heading className="page_heading">Welcome to the best guide of Online Casinos</Heading>
                         {/*<p>We are listing only trusted high standard casinos tested by ourselves. Here you will find an extensive list of casinos that accepts real money.</p>
                         <p>Enjoy your stay at CasinoDreamers and good luck!</p>*/}
-                        {isSearching === 0 &&<p><Typewriter text='Searching for the best casino offers for You…' cursor={true}
-                                                      onFinished={onFinishedHandler}
-                        /></p>}
+                        {isSearching === 0 &&<p><Typewriter text='Searching for the best casino offers for You…' cursor={true} onFinished={onFinishedHandler} /></p>}
                     </HeaderTextWrapper>
                 </Container>
             </HeaderText>}
@@ -57,7 +49,7 @@ const LogoHeader = styled.div`
   align-items: center;
   @media screen and (max-width: 1250px) {
     height: 60px;
-    & > a > picture > * {
+    & > a > img {
       width: 62px;
       height: 50px;
     }
@@ -87,6 +79,9 @@ const HeaderText = styled.div`
     height: 330px;
     background-position-y: 0;
   }
+  @media screen and (max-width: 840px) {
+    background-position-x: right;
+  }
   @media screen and (max-width: 550px) {
     background: url(${bgImage750}) no-repeat center top;
     height: 240px;
@@ -104,9 +99,6 @@ const HeaderText = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  @media screen and (max-width: 840px) {
-    background-position-x: right;
-  }
 `
 export const Container = styled.div`
   width: 1200px;

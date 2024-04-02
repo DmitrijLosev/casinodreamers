@@ -18,6 +18,9 @@ import {ButtonWrapper, CasinoButtons} from "../layout/common/CasinoButtons.tsx";
 
 export const CasinoItem = () => {
     const [showPaymentPopUp, setShowPaymentPopUp] = useState(false);
+    const onPopUpClickHandler = () => setShowPaymentPopUp(false)
+    const onPopUpMouseLeaveHandler = () => setShowPaymentPopUp(false)
+
 
     return (
         <CasinoWrapper>
@@ -38,7 +41,7 @@ export const CasinoItem = () => {
 
             <CasinoGift>
                 <h3>€120</h3>
-                <h4>+ 500 FREE SPINS</h4>
+                <span>+ 500 FREE SPINS</span>
             </CasinoGift>
 
             <RatingWrapper>
@@ -88,8 +91,8 @@ export const CasinoItem = () => {
                     <img src={webmoney} alt={"Webmoney"} title={"Webmoney"}/>
                 </PaymentItem>*/}
 
-                    <PaymentsPopUpList showPaymentPopUp={showPaymentPopUp} onClick={() => setShowPaymentPopUp(false)}
-                                       onMouseLeave={() => setShowPaymentPopUp(false)}>
+                    <PaymentsPopUpList $showPaymentPopUp={showPaymentPopUp} onClick={onPopUpClickHandler}
+                                       onMouseLeave={onPopUpMouseLeaveHandler}>
                         <PaymentItem>
                             <img src={bitcoin} alt={"Bitcoin"} title={"Bitcoin"}/>
                         </PaymentItem>
@@ -162,7 +165,7 @@ const CasinoWrapper = styled.div`
     flex-direction: row;
     justify-content: start;
     align-items: start;
-    padding: 8px;
+    padding: 10px;
     gap: 10px;
     & > ${AdvantagesList}, & > ${ButtonWrapper} {
       display: none;
@@ -265,7 +268,7 @@ export const CasinoGift = styled.div`
     }
   }
 
-  & > h4 {
+  & > span {
     font-size: 14px;
     font-weight: 700;
     text-align: center;
@@ -358,7 +361,7 @@ export const PaymentItem = styled.div`
     max-height: 30px;
   }
 `
-export const PaymentsPopUpList = styled(PaymentsList)<{ showPaymentPopUp: boolean }>`
+export const PaymentsPopUpList = styled(PaymentsList)<{ $showPaymentPopUp: boolean }>`
   position: absolute;
   top: 0;
   background: #FFF;
@@ -370,7 +373,7 @@ export const PaymentsPopUpList = styled(PaymentsList)<{ showPaymentPopUp: boolea
   transition: opacity 0.3s ease, visibility 0.3s ease;
   z-index: 10;
   
-  ${props => props.showPaymentPopUp && css<{ showPaymentPopUp: boolean }>`
+  ${props => props.$showPaymentPopUp && css<{ $showPaymentPopUp: boolean }>`
     opacity: unset;
     visibility: unset;
   `}

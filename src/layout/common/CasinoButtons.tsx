@@ -25,7 +25,7 @@ export const ButtonWrapper = styled.div`
     width: 100%;
   }
   @media screen and (max-width: 550px) {
-    gap: 5px;
+    gap: 10px;
   }
 `
 

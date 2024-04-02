@@ -48,14 +48,14 @@ export const CasinoReview = () => {
                         </CasinoReviewLink>
                         <CasinoGift>
                             <h3>€120</h3>
-                            <h4>+ 500 FREE SPINS</h4>
+                            <span>+ 500 FREE SPINS</span>
                         </CasinoGift>
 
                         <CasinoReviewMobileRatingWrapper>
-                            <CasinoAdvantageListWrapper>
+                            {screenSize.width < 841 && <CasinoAdvantageListWrapper>
                                 <CasinoReviewTitle>Advantages</CasinoReviewTitle>
-                                {screenSize.width < 841 && <CasinoAdvantageList />}
-                            </CasinoAdvantageListWrapper>
+                                 <CasinoAdvantageList />
+                            </CasinoAdvantageListWrapper>}
                             <RatingWrapper>
                                 <RatingText>9.9
                                     <span> / 10</span>
@@ -144,7 +144,7 @@ export const CasinoReview = () => {
                                         </PaymentItem>
                                     </>
                                     }
-                                    <PaymentsPopUpList showPaymentPopUp={showPaymentPopUp}
+                                    <PaymentsPopUpList $showPaymentPopUp={showPaymentPopUp}
                                                        onClick={() => setShowPaymentPopUp(false)}
                                                        onMouseLeave={() => setShowPaymentPopUp(false)}>
                                         <PaymentItem>
