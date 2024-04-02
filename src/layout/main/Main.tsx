@@ -23,11 +23,15 @@ import starWebp from "../../assets/image/star.webp"
 import Typewriter from "react-ts-typewriter";
 import {FC, useState} from "react";
 
-export const Main :FC<{setIsSearching:(value:boolean)=>void,isSearching:boolean}> = ({setIsSearching,isSearching}) =>  {
+export const Main :FC<{setIsSearching:(value:number)=>void,isSearching:number}> = ({setIsSearching,isSearching}) =>  {
 
     const [showBestCasino,setShowBestCasino] = useState(false)
     const onFinishedHandler = () =>{
-        setTimeout(()=>{setIsSearching(false)},500)
+        setTimeout(()=>{setIsSearching(1)},500)
+    }
+    const onFoundHandler = () => {
+        setIsSearching(2)
+        setShowBestCasino(true)
     }
 
     return (
@@ -38,17 +42,19 @@ export const Main :FC<{setIsSearching:(value:boolean)=>void,isSearching:boolean}
                     {/*<p>We are listing only trusted high standard casinos tested by ourselves. <br/>Here you will find an
                         extensive list of casinos that accepts real money.</p>
                     <p>Enjoy your stay at CasinoDreamers and good luck!</p>*/}
-                    {isSearching &&<p><Typewriter text='Searching for the best casino offers for You…' cursor={true}
+                    {isSearching === 0 &&<p><Typewriter text='Searching for the best casino offers for You…' cursor={true}
                                    onFinished={onFinishedHandler}
                     /></p>}
                 </HeaderTextWrapper>
                 <Article>
                     <StyledHeader>{/*Best Online Casinos 2024*/}
-                        {!isSearching && <Typewriter text='We have found the best casino for You' cursor={false}
-                                                     onFinished={()=>setShowBestCasino(true)}
+                        {isSearching === 1 && <Typewriter text='We have found the best casino for You' cursor={false}
+                                                     onFinished={onFoundHandler}
                         />}
+                        {isSearching === 2 && 'We have found the best casino for You'}
                     </StyledHeader>
-                    <CasinoList showBestCasino = {showBestCasino}/>
+                    {isSearching < 2 && <CasinoList showBestCasino = {showBestCasino}/> }
+                    {isSearching === 2 && <CasinoList showBestCasino = {true}/> }
                 </Article>
                 <Article>
                     <ContentSection>

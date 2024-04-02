@@ -11,11 +11,11 @@ import {FC} from "react";
 import {NavLink, useLocation} from "react-router-dom";
 
 
-export const Header:FC<{setIsSearching:(value:boolean)=>void,isSearching:boolean}> = ({setIsSearching,isSearching}) => {
+export const Header:FC<{setIsSearching:(value:number)=>void,isSearching:number}> = ({setIsSearching,isSearching}) => {
 
     const path=useLocation().pathname;
     const onFinishedHandler = () =>{
-        setTimeout(()=>{setIsSearching(false)},500)
+        setTimeout(()=>{setIsSearching(1)},500)
     }
 
     return (
@@ -38,7 +38,7 @@ export const Header:FC<{setIsSearching:(value:boolean)=>void,isSearching:boolean
                         <Heading className="page_heading">Welcome to the best guide of Online Casinos</Heading>
                         {/*<p>We are listing only trusted high standard casinos tested by ourselves. Here you will find an extensive list of casinos that accepts real money.</p>
                         <p>Enjoy your stay at CasinoDreamers and good luck!</p>*/}
-                        {isSearching &&<p><Typewriter text='Searching for the best casino offers for You…' cursor={true}
+                        {isSearching === 0 &&<p><Typewriter text='Searching for the best casino offers for You…' cursor={true}
                                                       onFinished={onFinishedHandler}
                         /></p>}
                     </HeaderTextWrapper>

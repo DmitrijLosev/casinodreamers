@@ -13,7 +13,7 @@ import {CasinoReview} from "./layout/pages/review/CasinoReview.tsx";
 
 function App() {
 
-    const [isSearchingCasino, setIsSearching] = useState(true)
+    const [isSearchingCasino, setIsSearching] = useState(0)
 
     return (
         <>
