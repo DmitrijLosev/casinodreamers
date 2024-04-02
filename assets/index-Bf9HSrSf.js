@@ -587,7 +587,11 @@ Error generating stack: `+o.message+`
     top: -59px;
     left: calc(50% - 60px);
   }
-
+  & > picture > * {
+    width:118px;
+    height: auto;
+  }
+  
   @media screen and (max-width: 950px) {
     width: 45%;
   }
