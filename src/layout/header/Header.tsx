@@ -84,6 +84,7 @@ const HeaderText = styled.div`
   }
   @media screen and (max-width: 550px) {
     background: url(${bgImage750}) no-repeat center top;
+    background-position-x: right;
     height: 240px;
   }
   @media screen and (max-width: 375px) {
