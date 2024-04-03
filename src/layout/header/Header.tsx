@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import logo from "../../assets/image/logo.svg";
+
+import logoPng from "../../assets/image/logo.png";
+import logoWebp from "../../assets/image/logo.webp";
 import bgImage from "../../assets/image/home-bg.png";
 import bgImage1250 from "../../assets/image/bg1250.png";
 import bgImage950 from "../../assets/image/bg950.png";
@@ -10,20 +12,26 @@ import {FC} from "react";
 import {NavLink, useLocation} from "react-router-dom";
 
 
-export const Header:FC<{setIsSearching:(value:number)=>void,isSearching:number}> = ({setIsSearching,isSearching}) => {
+export const Header: FC<{ setIsSearching: (value: number) => void, isSearching: number }> = ({
+                                                                                                 setIsSearching,
+                                                                                                 isSearching
+                                                                                             }) => {
 
-    const path=useLocation().pathname;
-    const onFinishedHandler = () =>{
-        setTimeout(()=>{setIsSearching(1)},500)
+    const path = useLocation().pathname;
+    const onFinishedHandler = () => {
+        setTimeout(() => {
+            setIsSearching(1)
+        }, 500)
     }
 
     return (
         <>
             <LogoHeader>
                 <NavLink to="/" rel="home" aria-current="page">
-                        <img width="92" height="72"
-                             src={logo}
-                             alt="CasinoDreamers.com" decoding="async"/>
+                    <picture>
+                        <source srcSet={logoWebp} type="image/webp"/>
+                        <img width="92" height="72" src={logoPng} alt="CasinoDreamers.com" decoding="async"/>
+                    </picture>
                 </NavLink>
             </LogoHeader>
             {path === "/" && <HeaderText>
@@ -32,7 +40,9 @@ export const Header:FC<{setIsSearching:(value:number)=>void,isSearching:number}>
                         <Heading className="page_heading">Welcome to the best guide of Online Casinos</Heading>
                         {/*<p>We are listing only trusted high standard casinos tested by ourselves. Here you will find an extensive list of casinos that accepts real money.</p>
                         <p>Enjoy your stay at CasinoDreamers and good luck!</p>*/}
-                        {isSearching === 0 &&<p><Typewriter text='Searching for the best casino offers for You…' cursor={true} onFinished={onFinishedHandler} /></p>}
+                        {isSearching === 0 &&
+                            <p><Typewriter text="Searching for the best casino offers for You…" cursor={true}
+                                           onFinished={onFinishedHandler}/></p>}
                     </HeaderTextWrapper>
                 </Container>
             </HeaderText>}
@@ -49,7 +59,7 @@ const LogoHeader = styled.div`
   align-items: center;
   @media screen and (max-width: 1250px) {
     height: 60px;
-    & > a > img {
+    & > a > picture> * {
       width: 62px;
       height: 50px;
     }
@@ -92,7 +102,7 @@ const HeaderText = styled.div`
     height: 300px;
     background-size: contain;
   }
-  
+
   background-size: cover;
   width: 100%;
   background-position-y: -80px;
@@ -133,7 +143,7 @@ export const HeaderTextWrapper = styled.div`
     }
   }
   @media screen and (max-width: 840px) {
-      display: none;
+    display: none;
   }
 `
 export const Heading = styled.h1`
@@ -141,7 +151,7 @@ export const Heading = styled.h1`
   margin-bottom: 30px;
   @media screen and (max-width: 950px) {
     font-weight: 700;
-    font-size:26px;
+    font-size: 26px;
     line-height: 110%;
   }
   @media screen and (max-width: 840px) {
