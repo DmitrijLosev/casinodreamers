@@ -43,7 +43,7 @@ function App() {
                     <Route path={"/disclaimer"} element={<Disclaimer/>}/>
                     <Route path={"/privacy-policy"} element={<PrivacyPolicy/>}/>
                     <Route path={`/${casinoInfo?.name.trim().toLowerCase()}`} element={<CasinoReview casinoInfo={casinoInfo}/>}/>
-                    <Route path={"/*"} element={<Error404/>}/>
+                    <Route path={"*"} element={<Error404/>}/>
                 </Routes> :
                 <SpinWrapper>
                     <TailSpin

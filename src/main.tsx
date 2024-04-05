@@ -1,11 +1,13 @@
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-import {BrowserRouter} from "react-router-dom";
+import {HashRouter} from "react-router-dom";
+
+//change Hashrouter on BrowserRouter and basename /casinodreamers
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <BrowserRouter basename={"/casinodreamers"}>
+    <HashRouter basename={"/"}>
         <App />
-    </BrowserRouter>
+    </HashRouter>
 
 )
