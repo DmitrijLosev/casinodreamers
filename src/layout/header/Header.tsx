@@ -10,7 +10,6 @@ import {NavLink, useLocation} from "react-router-dom";
 import {CasinoInfoType} from "../../api/dreamersApi.ts";
 import LoadingBar from "react-top-loading-bar";
 
-
 export const Header: FC<{
     setIsSearching: (value: number) => void, isSearching: number, casinoInfo: CasinoInfoType | null
 }> = ({setIsSearching, isSearching, casinoInfo}) => {
@@ -30,7 +29,7 @@ export const Header: FC<{
                 setProgress(pr => pr + 10)
             if (progress === 100)
                 setProgress(0)
-        }, 100)
+        }, 300)
         return () => {
             clearInterval(intervalId)
         }
@@ -38,7 +37,6 @@ export const Header: FC<{
 
     return (
         <>
-
             <LogoHeader>
                 <Container>
                     <NavLink to="/" rel="home" aria-current="page">
@@ -60,14 +58,10 @@ export const Header: FC<{
                                            onFinished={onFinishedHandler}/></p>}
                     </HeaderTextWrapper>
                 </Container>
-                {!casinoInfo && <LoadingBar
-                    color="#f11946" progress={progress}
-                />}
-                {isSearching <= 2 && casinoInfo && <LoadingBar className={"progressing"}
-                                                               color="#f11946"
-                                                               progress={isSearching === 0 ? 33 : isSearching === 1 ? 66 : 100}
-                />
-                }
+                <LoadingBarWrapper>
+                    {!casinoInfo && <LoadingBar color="#f11946" progress={progress} containerStyle={{top:"78px"}} />}
+                    {isSearching <= 2 && casinoInfo && <LoadingBar color="#f11946" progress={isSearching === 0 ? 33 : isSearching === 1 ? 66 : 100}  containerStyle={{top:"78px"}}/>}
+                </LoadingBarWrapper>
             </HeaderText>}
         </>
     );
@@ -141,8 +135,7 @@ const HeaderText = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;*/
-
-
+  
   background: url(${bg2440}) no-repeat center top;
   background-size: cover;
   width: 100%;
@@ -178,6 +171,7 @@ const HeaderText = styled.div`
     background: url(${bgMobile}) no-repeat center top;
     height: 120px;
   }
+
 `
 export const Container = styled.div`
   width: 1200px;
@@ -224,5 +218,18 @@ export const Heading = styled.h1`
   }
   @media screen and (max-width: 840px) {
     margin: 0;
+  }
+`
+
+const LoadingBarWrapper = styled.div`
+  & > div {
+    @media screen and (max-width: 1250px) {
+      top:58px !important;
+    }
+    position: absolute;
+  }
+  
+  & > div > div > div {
+    box-shadow: unset !important;
   }
 `

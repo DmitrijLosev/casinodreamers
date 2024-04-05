@@ -10,6 +10,7 @@ import {PrivacyPolicy} from "./layout/pages/privacy/PrivacyPolicy.tsx";
 import {Error404} from "./layout/pages/error404/Error404.tsx";
 import {CasinoReview} from "./layout/pages/review/CasinoReview.tsx";
 import {CasinoInfoType, dreamersApi} from "./api/dreamersApi.ts";
+import styled from "styled-components";
 
 
 
@@ -36,7 +37,7 @@ function App() {
     return (
         <>
             <Header isSearching={isSearchingCasino} setIsSearching={setIsSearching} casinoInfo={casinoInfo}/>
-            {casinoInfo &&
+            {casinoInfo ?
                 <Routes>
                     <Route path={""} element={<Main setIsSearching={setIsSearching} isSearching={isSearchingCasino} casinoInfo={casinoInfo}/>} />
                     <Route path={"/about"} element={<AboutUs/>}/>
@@ -44,7 +45,7 @@ function App() {
                     <Route path={"/privacy-policy"} element={<PrivacyPolicy/>}/>
                     <Route path={`/${casinoInfo?.name.trim().toLowerCase()}`} element={<CasinoReview casinoInfo={casinoInfo}/>}/>
                     <Route path={"*"} element={<Error404/>}/>
-                </Routes>}
+                </Routes> : <SpinDiv></SpinDiv>}
             <Footer/>
         </>
     )
@@ -52,16 +53,7 @@ function App() {
 
 export default App
 
-/*
-const SpinWrapper = styled.div`
+
+const SpinDiv = styled.div`
   height: 30vh;
-  & > div {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  
-  
-`*/
+`

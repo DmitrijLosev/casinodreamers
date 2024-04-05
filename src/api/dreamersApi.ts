@@ -12,6 +12,7 @@ export const dreamersApi = {
         return instance.get<CasinoInfoType[], AxiosResponse<CasinoInfoType[]>>("casinos")
     }
 }
+
 export type CasinoReviewInfoType={
     about: string,
     about_image_url: string,
