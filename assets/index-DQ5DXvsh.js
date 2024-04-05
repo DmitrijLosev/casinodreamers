@@ -1382,4 +1382,4 @@ to {
   
   
   
-`;fs.createRoot(document.getElementById("root")).render(u.jsx(_2,{basename:"/casinodreamers",children:u.jsx(Xw,{})}));
+`;fs.createRoot(document.getElementById("root")).render(u.jsx(_2,{basename:"/",children:u.jsx(Xw,{})}));
