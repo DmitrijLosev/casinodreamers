@@ -60,9 +60,9 @@ export const Header: FC<{
                                            onFinished={onFinishedHandler}/></p>}
                     </HeaderTextWrapper>
                 </Container>
-                <LoadingBar
+                {!casinoInfo && <LoadingBar
                     color="#f11946" progress={progress}
-                />
+                />}
                 {isSearching <= 2 && casinoInfo && <LoadingBar className={"progressing"}
                                                                color="#f11946"
                                                                progress={isSearching === 0 ? 33 : isSearching === 1 ? 66 : 100}
