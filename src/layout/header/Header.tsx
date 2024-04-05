@@ -1,12 +1,9 @@
 import styled from "styled-components";
-
 import logoPng from "../../assets/image/logo.png";
 import logoWebp from "../../assets/image/logo.webp";
-import bgImage from "../../assets/image/home-bg.png";
-import bgImage1250 from "../../assets/image/bg1250.png";
-import bgImage950 from "../../assets/image/bg950.png";
-import bgImage750 from "../../assets/image/bg750.png";
-import bgMobile from "../../assets/image/bgMobile.png";
+import bg2440 from "../../assets/image/bg2440x500.jpg";
+import bg1440 from "../../assets/image/bg1440x400.jpg";
+import bgMobile from "../../assets/image/bg375x150.webp";
 import Typewriter from "react-ts-typewriter";
 import {FC} from "react";
 import {NavLink, useLocation} from "react-router-dom";
@@ -26,13 +23,16 @@ export const Header: FC<{ setIsSearching: (value: number) => void, isSearching: 
 
     return (
         <>
+
             <LogoHeader>
-                <NavLink to="/" rel="home" aria-current="page">
-                    <picture>
-                        <source srcSet={logoWebp} type="image/webp"/>
-                        <img width="92" height="72" src={logoPng} alt="CasinoDreamers.com" decoding="async"/>
-                    </picture>
-                </NavLink>
+                <Container>
+                    <NavLink to="/" rel="home" aria-current="page">
+                        <picture>
+                            <source srcSet={logoWebp} type="image/webp"/>
+                            <img width="92" height="72" src={logoPng} alt="CasinoDreamers.com" decoding="async"/>
+                        </picture>
+                    </NavLink>
+                </Container>
             </LogoHeader>
             {path === "/" && <HeaderText>
                 <Container>
@@ -52,21 +52,29 @@ export const Header: FC<{ setIsSearching: (value: number) => void, isSearching: 
 
 const LogoHeader = styled.div`
   width: 100%;
-  height: 100px;
+  height: 80px;
   background: #1D2035;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  
+  & > div {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    height: 100%;
+    @media screen and (max-width: 840px) {
+      justify-content: center;
+    }
+  }
+
   @media screen and (max-width: 1250px) {
     height: 60px;
-    & > a > picture> * {
+    & > div > a > picture > * {
       width: 62px;
       height: 50px;
     }
   }
 `
 const HeaderText = styled.div`
-  background: url(${bgImage}) no-repeat center top;
+  /*background: url() no-repeat center top;
   @media screen and (max-width: 2200px) {
     height: 500px;
   }
@@ -80,12 +88,12 @@ const HeaderText = styled.div`
     height: 300px;
   }
   @media screen and (max-width: 1250px) {
-    background: url(${bgImage1250}) no-repeat center top;
+    background: url) no-repeat center top;
     height: 270px;
     background-position-y: -60px;
   }
   @media screen and (max-width: 950px) {
-    background: url(${bgImage950}) no-repeat center top;
+    background: url() no-repeat center top;
     height: 330px;
     background-position-y: 0;
   }
@@ -93,12 +101,12 @@ const HeaderText = styled.div`
     background-position-x: right;
   }
   @media screen and (max-width: 550px) {
-    background: url(${bgImage750}) no-repeat center top;
+    background: url() no-repeat center top;
     background-position-x: right;
     height: 240px;
   }
   @media screen and (max-width: 375px) {
-    background: url(${bgMobile}) no-repeat center top;
+    background: url() no-repeat center top;
     height: 300px;
     background-size: contain;
   }
@@ -109,7 +117,43 @@ const HeaderText = styled.div`
   height: 700px;
   display: flex;
   align-items: center;
+  justify-content: center;*/
+
+  background: url(${bg2440}) no-repeat center top;
+  background-size: cover;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  align-items: center;
   justify-content: center;
+  @media screen and (max-width: 1800px) {
+    height: 400px;
+  }
+  @media screen and (max-width: 1600px) {
+    height: 350px;
+  }
+  @media screen and (max-width: 1440px) {
+    background: url(${bg1440}) no-repeat center top;
+    height: 300px;
+  }
+  @media screen and (max-width: 1300px) {
+    background: url(${bg1440}) no-repeat center top;
+    height: 250px;
+  }
+  @media screen and (max-width: 840px) {
+    background: url(${bg1440}) no-repeat center top;
+    height: 350px;
+    background-position-x: -600px;
+  }
+  @media screen and (max-width: 550px) {
+    background: url(${bg1440}) no-repeat center top;
+    height: 300px;
+    background-position-x: -750px;
+  }
+  @media screen and (max-width: 375px) {
+    background: url(${bgMobile}) no-repeat center top;
+    height: 120px;
+  }
 `
 export const Container = styled.div`
   width: 1200px;
@@ -138,7 +182,7 @@ export const HeaderTextWrapper = styled.div`
     max-width: 400px;
     & > p {
       font-size: 14px;
-      font-weight: 400;
+      font-weight: 500;
       line-height: 20px;
     }
   }

@@ -1,6 +1,4 @@
 import {Container} from "../../header/Header.tsx";
-import casino1Webp from "../../../assets/image/casino1.webp";
-import casino1Png from "../../../assets/image/casino1.png";
 import {
     CasinoGift,
     PaymentItem, PaymentsList,
@@ -10,24 +8,19 @@ import {
 } from "../../../components/CasinoItem.tsx";
 import StarRatings from "react-star-ratings";
 import {CasinoAdvantageList, CasinoReviewTitle} from "../../../components/CasinoAdvantageList.tsx";
-import bitcoin from "../../../assets/icon/bitcoin.svg";
-import boleto from "../../../assets/icon/boleto.svg";
-import mastercard from "../../../assets/icon/mastercard.svg";
-import neteller from "../../../assets/icon/neteller.svg";
-import rapidTransfer from "../../../assets/icon/rapid-transfer.svg";
-import skrill from "../../../assets/icon/skrill.svg";
-import revolut from "../../../assets/icon/revolut.svg";
-import visa from "../../../assets/icon/visa.svg";
-import webmoney from "../../../assets/icon/webmoney.svg";
 import styled from "styled-components";
-import {useState} from "react";
-import {Line} from "rc-progress";
+import {FC, useState} from "react";
 import useScreenSize from "../../../hooks/useScreenSize.ts";
 import {CasinoReviewInfo} from "./CasinoReviewInfo/CasinoReviewInfo.tsx";
+import {CasinoInfoType} from "../../../api/dreamersApi.ts";
+import {CasinoSpecifications} from "../../../components/CasinoSpecifications.tsx";
 
-export const CasinoReview = () => {
+
+export const CasinoReview: FC<{ casinoInfo: CasinoInfoType | null }> = ({casinoInfo}) => {
     const [showPaymentPopUp, setShowPaymentPopUp] = useState(false);
     const screenSize = useScreenSize()
+    const render8 = screenSize.width > 1250 || screenSize.width < 841 && screenSize.width > 374
+    const render9 = !render8
 
     return (
         <CasinoReviewMain>
@@ -36,154 +29,83 @@ export const CasinoReview = () => {
 
                     <CasinoReviewWrappers>
                         <CasinoReviewLink
-                            href="https://tonybet.lv/promotions/welcome-casino-cashback?btag=669146_67987921D95F461385C6412FF09A5FDE"
-                            target="_blank">
+                            href={casinoInfo?.casino_url}
+                            target="_blank" style={{ backgroundColor: casinoInfo?.logo_background ? casinoInfo?.logo_background : "#0a0a0a" }}>
                             <picture>
                                 <source
-                                    srcSet={casino1Webp}
+                                    srcSet={casinoInfo?.logo_webp_url}
                                     type="image/webp"/>
                                 <img
-                                    src={casino1Png} alt="tonybet"/>
+                                    src={casinoInfo?.logo_url} alt={casinoInfo?.name}/>
                             </picture>
                         </CasinoReviewLink>
                         <CasinoGift>
-                            <h3>€120</h3>
-                            <span>+ 500 FREE SPINS</span>
+                            <h3>{casinoInfo?.bonus}</h3>
+                            <span>{casinoInfo?.free_spins}</span>
                         </CasinoGift>
 
                         <CasinoReviewMobileRatingWrapper>
                             {screenSize.width < 841 && <CasinoAdvantageListWrapper>
                                 <CasinoReviewTitle>Advantages</CasinoReviewTitle>
-                                 <CasinoAdvantageList />
+                                <CasinoAdvantageList advantagesList={casinoInfo?.extra}/>
                             </CasinoAdvantageListWrapper>}
                             <RatingWrapper>
-                                <RatingText>9.9
+                                <RatingText>{casinoInfo?.rating}
                                     <span> / 10</span>
                                 </RatingText>
-                                <StarRatings
-                                    rating={4.5}
+                                {casinoInfo && <StarRatings
+                                    rating={casinoInfo?.rating / 2}
                                     starRatedColor={"#FFC700"}
                                     starEmptyColor={"#D0D0D0"}
                                     starDimension="20px"
                                     starSpacing="2px"
-                                />
+                                />}
                             </RatingWrapper>
                         </CasinoReviewMobileRatingWrapper>
 
                         <BonusReviewButton
-                            href="https://tonybet.lv/promotions/welcome-casino-cashback?btag=669146_67987921D95F461385C6412FF09A5FDE"
+                            href={casinoInfo?.casino_url}
                             target="_blank">Get Bonus</BonusReviewButton>
                     </CasinoReviewWrappers>
 
                     <CasinoReviewAdvantagesWrapper>
 
-                        {screenSize.width > 840 && <CasinoAdvantageList isTitle/>}
+                        {screenSize.width > 840 && <CasinoAdvantageList isTitle advantagesList={casinoInfo?.extra}/>}
 
                         <CasinoReviewPaymentWrapper>
                             <CasinoReviewPaymentTitleWrapper>
                                 <CasinoReviewTitle>Payments</CasinoReviewTitle>
-                                {true &&
+                                {casinoInfo && ((casinoInfo?.payment_methods.length > 8 && render8) || (casinoInfo?.payment_methods.length > 9 && render9)) &&
                                     <CasinoReviewPaymentShowAll onClick={() => setShowPaymentPopUp(!showPaymentPopUp)}
                                                                 onMouseMove={() => setShowPaymentPopUp(true)}
                                                                 onMouseLeave={() => setShowPaymentPopUp(false)}
-                                    >Show all (12)</CasinoReviewPaymentShowAll>}
+                                    >Show all ({casinoInfo?.payment_methods.length})</CasinoReviewPaymentShowAll>}
                             </CasinoReviewPaymentTitleWrapper>
                             <PaymentWrapper>
                                 <PaymentsList>
-                                    {screenSize.width > 1250 || screenSize.width < 841 && screenSize.width > 374 ? <> <PaymentItem>
-                                        <img src={bitcoin} alt={"Bitcoin"} title={"Bitcoin"}/>
-                                    </PaymentItem>
-                                        <PaymentItem>
-                                            <img src={boleto} alt={"Boleto"} title={"Boleto"}/>
-                                        </PaymentItem>
-                                        <PaymentItem>
-                                            <img src={mastercard} alt={"Mastercard"} title={"Mastercard"}/>
-                                        </PaymentItem>
-                                        <PaymentItem>
-                                            <img src={neteller} alt={"Neteller"} title={"Neteller"}/>
-                                        </PaymentItem>
-                                        <PaymentItem>
-                                            <img src={rapidTransfer} alt={"Rapid-Transfer"} title={"Rapid-Transfer"}/>
-                                        </PaymentItem>
-                                        <PaymentItem>
-                                            <img src={skrill} alt={"Skrill"} title={"Skrill"}/>
-                                        </PaymentItem>
-                                        <PaymentItem>
-                                            <img src={revolut} alt={"Revolut"} title={"Revolut"}/>
-                                        </PaymentItem>
-                                        <PaymentItem>
-                                            <img src={visa} alt={"Visa"} title={"Visa"}/>
-                                        </PaymentItem>
-                                    </> :
-                                    <> <PaymentItem>
-                                        <img src={bitcoin} alt={"Bitcoin"} title={"Bitcoin"}/>
-                                    </PaymentItem>
-                                        <PaymentItem>
-                                            <img src={boleto} alt={"Boleto"} title={"Boleto"}/>
-                                        </PaymentItem>
-                                        <PaymentItem>
-                                            <img src={mastercard} alt={"Mastercard"} title={"Mastercard"}/>
-                                        </PaymentItem>
-                                        <PaymentItem>
-                                            <img src={neteller} alt={"Neteller"} title={"Neteller"}/>
-                                        </PaymentItem>
-                                        <PaymentItem>
-                                            <img src={rapidTransfer} alt={"Rapid-Transfer"} title={"Rapid-Transfer"}/>
-                                        </PaymentItem>
-                                        <PaymentItem>
-                                            <img src={skrill} alt={"Skrill"} title={"Skrill"}/>
-                                        </PaymentItem>
-                                        <PaymentItem>
-                                            <img src={revolut} alt={"Revolut"} title={"Revolut"}/>
-                                        </PaymentItem>
-                                        <PaymentItem>
-                                            <img src={visa} alt={"Visa"} title={"Visa"}/>
-                                        </PaymentItem>
-                                        <PaymentItem>
-                                            <img src={webmoney} alt={"Webmoney"} title={"Webmoney"}/>
-                                        </PaymentItem>
-                                    </>
+                                    {render8 ? <>
+                                            {casinoInfo?.payment_methods.filter((_, i) => i < 8).map((m,i) =>
+                                                <PaymentItem key={i}>
+                                                    <img src={m.url} alt={m.alt} title={m.title}/>
+                                                </PaymentItem>
+                                            )}
+                                        </> :
+                                        <>
+                                            {casinoInfo?.payment_methods.filter((_, i) => i < 9).map((m,i) =>
+                                                <PaymentItem key={i}>
+                                                    <img src={m.url} alt={m.alt} title={m.title}/>
+                                                </PaymentItem>
+                                            )}
+                                        </>
                                     }
                                     <PaymentsPopUpList $showPaymentPopUp={showPaymentPopUp}
                                                        onClick={() => setShowPaymentPopUp(false)}
                                                        onMouseLeave={() => setShowPaymentPopUp(false)}>
-                                        <PaymentItem>
-                                            <img src={bitcoin} alt={"Bitcoin"} title={"Bitcoin"}/>
-                                        </PaymentItem>
-
-                                        <PaymentItem>
-                                            <img src={mastercard} alt={"Mastercard"} title={"Mastercard"}/>
-                                        </PaymentItem>
-                                        <PaymentItem>
-                                            <img src={neteller} alt={"Neteller"} title={"Neteller"}/>
-                                        </PaymentItem>
-                                        <PaymentItem>
-                                            <img src={boleto} alt={"Boleto"} title={"Boleto"}/>
-                                        </PaymentItem>
-                                        <PaymentItem>
-                                            <img src={rapidTransfer} alt={"Rapid-Transfer"} title={"Rapid-Transfer"}/>
-                                        </PaymentItem>
-                                        <PaymentItem>
-                                            <img src={skrill} alt={"Skrill"} title={"Skrill"}/>
-                                        </PaymentItem>
-                                        <PaymentItem>
-                                            <img src={revolut} alt={"Revolut"} title={"Revolut"}/>
-                                        </PaymentItem>
-                                        <PaymentItem>
-                                            <img src={visa} alt={"Visa"} title={"Visa"}/>
-                                        </PaymentItem>
-                                        <PaymentItem>
-                                            <img src={webmoney} alt={"Webmoney"} title={"Webmoney"}/>
-                                        </PaymentItem>
-                                        <PaymentItem>
-                                            <img src={revolut} alt={"Revolut"} title={"Revolut"}/>
-                                        </PaymentItem>
-                                        <PaymentItem>
-                                            <img src={visa} alt={"Visa"} title={"Visa"}/>
-                                        </PaymentItem>
-                                        <PaymentItem>
-                                            <img src={webmoney} alt={"Webmoney"} title={"Webmoney"}/>
-                                        </PaymentItem>
+                                        {casinoInfo?.payment_methods.map((m,i) =>
+                                            <PaymentItem key={i}>
+                                                <img src={m.url} alt={m.alt} title={m.title}/>
+                                            </PaymentItem>
+                                        )}
                                     </PaymentsPopUpList>
 
                                 </PaymentsList>
@@ -191,90 +113,12 @@ export const CasinoReview = () => {
                         </CasinoReviewPaymentWrapper>
                     </CasinoReviewAdvantagesWrapper>
 
-                    <CasinoReviewSpecificationsWrapper>
-                        <CasinoReviewSpecificationTitleWrapper>
-                            <CasinoReviewTitle>Specifications</CasinoReviewTitle>
-                            <CasinoReviewSpecificationMark>9.4/10</CasinoReviewSpecificationMark>
-                        </CasinoReviewSpecificationTitleWrapper>
-                        <CasinoReviewSpecificationItemsWrapper>
-                            <CasinoReviewSpecificationItemWrapper>
-                                <CasinoReviewSpecificationItemTitleWrapper>
-                                    <h4>Reliability</h4>
-                                    <span>8/10</span>
-                                </CasinoReviewSpecificationItemTitleWrapper>
-                                <Line percent={80} strokeWidth={2} strokeColor="#37BC5C" trailColor="#C4C4C4"
-                                      trailWidth={2}/>
-                            </CasinoReviewSpecificationItemWrapper>
-                            <CasinoReviewSpecificationItemWrapper>
-                                <CasinoReviewSpecificationItemTitleWrapper>
-                                    <h4>Usability</h4>
-                                    <span>7/10</span>
-                                </CasinoReviewSpecificationItemTitleWrapper>
-                                <Line percent={70} strokeWidth={2} strokeColor="#37BC5C" trailColor="#C4C4C4"
-                                      trailWidth={2}/>
-                            </CasinoReviewSpecificationItemWrapper>
-                            <CasinoReviewSpecificationItemWrapper>
-                                <CasinoReviewSpecificationItemTitleWrapper>
-                                    <h4>Promotion</h4>
-                                    <span>9/10</span>
-                                </CasinoReviewSpecificationItemTitleWrapper>
-                                <Line percent={90} strokeWidth={2} strokeColor="#37BC5C" trailColor="#C4C4C4"
-                                      trailWidth={2}/>
-                            </CasinoReviewSpecificationItemWrapper>
-                            <CasinoReviewSpecificationItemWrapper>
-                                <CasinoReviewSpecificationItemTitleWrapper>
-                                    <h4>Software</h4>
-                                    <span>9/10</span>
-                                </CasinoReviewSpecificationItemTitleWrapper>
-                                <Line percent={90} strokeWidth={2} strokeColor="#37BC5C" trailColor="#C4C4C4"
-                                      trailWidth={2}/>
-                            </CasinoReviewSpecificationItemWrapper>
-                            <CasinoReviewSpecificationItemWrapper>
-                                <CasinoReviewSpecificationItemTitleWrapper>
-                                    <h4>Slots</h4>
-                                    <span>10/10</span>
-                                </CasinoReviewSpecificationItemTitleWrapper>
-                                <Line percent={100} strokeWidth={2} strokeColor="#37BC5C" trailColor="#C4C4C4"
-                                      trailWidth={2}/>
-                            </CasinoReviewSpecificationItemWrapper>
-                            <CasinoReviewSpecificationItemWrapper>
-                                <CasinoReviewSpecificationItemTitleWrapper>
-                                    <h4>Game Types</h4>
-                                    <span>7/10</span>
-                                </CasinoReviewSpecificationItemTitleWrapper>
-                                <Line percent={70} strokeWidth={2} strokeColor="#37BC5C" trailColor="#C4C4C4"
-                                      trailWidth={2}/>
-                            </CasinoReviewSpecificationItemWrapper>
-                            <CasinoReviewSpecificationItemWrapper>
-                                <CasinoReviewSpecificationItemTitleWrapper>
-                                    <h4>Payments</h4>
-                                    <span>8/10</span>
-                                </CasinoReviewSpecificationItemTitleWrapper>
-                                <Line percent={80} strokeWidth={2} strokeColor="#37BC5C" trailColor="#C4C4C4"
-                                      trailWidth={2}/>
-                            </CasinoReviewSpecificationItemWrapper>
-                            <CasinoReviewSpecificationItemWrapper>
-                                <CasinoReviewSpecificationItemTitleWrapper>
-                                    <h4>Mobile</h4>
-                                    <span>10/10</span>
-                                </CasinoReviewSpecificationItemTitleWrapper>
-                                <Line percent={100} strokeWidth={2} strokeColor="#37BC5C" trailColor="#C4C4C4"
-                                      trailWidth={2}/>
-                            </CasinoReviewSpecificationItemWrapper>
-                            <CasinoReviewSpecificationItemWrapper>
-                                <CasinoReviewSpecificationItemTitleWrapper>
-                                    <h4>Support</h4>
-                                    <span>8/10</span>
-                                </CasinoReviewSpecificationItemTitleWrapper>
-                                <Line percent={80} strokeWidth={2} strokeColor="#37BC5C" trailColor="#C4C4C4"
-                                      trailWidth={2}/>
-                            </CasinoReviewSpecificationItemWrapper>
-                        </CasinoReviewSpecificationItemsWrapper>
+                    {casinoInfo && <CasinoSpecifications casinoInfo={casinoInfo}/>}
 
-                    </CasinoReviewSpecificationsWrapper>
                 </CasinoReviewArticle>
 
-                <CasinoReviewInfo/>
+                <CasinoReviewInfo casinoInfo={casinoInfo} />
+
             </Container>
         </CasinoReviewMain>
     );
@@ -308,7 +152,7 @@ const CasinoReviewArticle = styled.article`
     padding: 0;
     margin: 50px 0 40px 0;
   }
-  
+
 `
 const CasinoReviewWrappers = styled.div`
   width: 30%;
@@ -324,13 +168,14 @@ const CasinoReviewWrappers = styled.div`
     width: 100%;
     gap: 30px;
   }
+
   & > ${CasinoGift} {
     @media screen and (max-width: 550px) {
       display: flex;
     }
   }
 `
-const CasinoReviewAdvantagesWrapper = styled(CasinoReviewWrappers)`
+export const CasinoReviewAdvantagesWrapper = styled(CasinoReviewWrappers)`
   align-items: start;
   @media screen and (max-width: 950px) {
     width: 40%;
@@ -341,17 +186,15 @@ const CasinoReviewAdvantagesWrapper = styled(CasinoReviewWrappers)`
     align-items: center;
   }
 `
-
-const CasinoReviewSpecificationsWrapper = styled(CasinoReviewAdvantagesWrapper)`
+export const CasinoReviewSpecificationsWrapper = styled(CasinoReviewAdvantagesWrapper)`
   align-items: center;
   @media screen and (max-width: 840px) {
-    gap:15px;
+    gap: 15px;
     padding-bottom: 30px;
   }
 `
 
 const CasinoReviewLink = styled.a`
-  background: #0a0a0a;
   height: 120px;
   width: 100%;
   display: flex;
@@ -362,13 +205,13 @@ const CasinoReviewLink = styled.a`
   @media screen and (max-width: 840px) {
     border-radius: 5px 5px 0 0;
   }
-  
+
   & > picture {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  
+
   & > picture > * {
     max-width: calc(100% - 20px);
     height: auto;
@@ -395,6 +238,7 @@ const BonusReviewButton = styled.a`
   &:hover {
     filter: brightness(1.2);
   }
+
   @media screen and (max-width: 950px) {
     min-width: 130px;
   }
@@ -409,13 +253,13 @@ const CasinoReviewPaymentWrapper = styled.div`
   @media screen and (max-width: 840px) {
     width: 100%;
   }
-  
+
   & > ${PaymentWrapper} {
     @media screen and (max-width: 550px) {
       display: block;
     }
   }
-  
+
   & > ${PaymentWrapper} > ${PaymentsList}, & > ${PaymentWrapper} > ${PaymentsList} > ${PaymentsPopUpList} {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 5px;
@@ -463,7 +307,7 @@ const CasinoReviewPaymentWrapper = styled.div`
   }
 `
 
-const CasinoReviewPaymentTitleWrapper = styled.div`
+export const CasinoReviewPaymentTitleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -476,11 +320,6 @@ const CasinoReviewPaymentTitleWrapper = styled.div`
   }
 `
 
-const CasinoReviewSpecificationTitleWrapper = styled(CasinoReviewPaymentTitleWrapper)`
-  margin: 0;
-  width: 100%;
-`
-
 const CasinoReviewPaymentShowAll = styled.span`
   font-size: 14px;
   line-height: 14px;
@@ -489,43 +328,22 @@ const CasinoReviewPaymentShowAll = styled.span`
   text-align: center;
   text-decoration: underline;
   color: #272727;
-  
+
   &:hover {
     cursor: pointer;
   }
 `
 
-const CasinoReviewSpecificationMark = styled(CasinoReviewTitle)`
-  color: #37BC5C;
-`
-
-const CasinoReviewSpecificationItemsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  width: 100%;
-`
-const CasinoReviewSpecificationItemWrapper = styled(CasinoReviewSpecificationItemsWrapper)`
-  gap: 5px;
-`
-const CasinoReviewSpecificationItemTitleWrapper = styled(CasinoReviewSpecificationTitleWrapper)`
-
-  & > h4, & > span {
-    font-size: 14px;
-    line-height: 14px;
-    font-weight: 400;
-    color: #414141;
-  }
-`
 const CasinoReviewMobileRatingWrapper = styled.div`
   @media screen and (max-width: 840px) {
     display: flex;
-    gap:35px;
+    gap: 35px;
     align-items: start;
   }
   @media screen and (max-width: 370px) {
-    gap:5px;
+    gap: 5px;
   }
+
   & > ${RatingWrapper} {
     @media screen and (max-width: 550px) {
       display: flex;
@@ -536,4 +354,17 @@ const CasinoAdvantageListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px
+`
+export const CasinoReviewSpecificationTitleWrapper = styled(CasinoReviewPaymentTitleWrapper)`
+  margin: 0;
+  width: 100%;
+`
+export const CasinoReviewSpecificationItemTitleWrapper = styled(CasinoReviewSpecificationTitleWrapper)`
+
+  & > h4, & > span {
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 500;
+    color: #414141;
+  }
 `

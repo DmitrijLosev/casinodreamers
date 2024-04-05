@@ -1,15 +1,13 @@
 import styled, {css} from "styled-components";
 import {CasinoItem} from "./CasinoItem.tsx";
 import {FC} from "react";
+import {CasinoInfoType} from "../api/dreamersApi.ts";
 
-export const CasinoList:FC<{showBestCasino:boolean}> = ({showBestCasino}) => {
-
-
-
+export const CasinoList:FC<{showBestCasino:boolean,casinoInfo:CasinoInfoType | null}> = ({showBestCasino,casinoInfo}) => {
 
     return (
-        <CasinoListWrapper $showBestCasino={showBestCasino}>
-            <CasinoItem/>
+        <CasinoListWrapper $showBestCasino={showBestCasino} >
+            <CasinoItem casinoInfo = {casinoInfo}/>
         </CasinoListWrapper>
     );
 };

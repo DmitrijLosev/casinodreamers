@@ -3,13 +3,13 @@ import {FC} from "react";
 import {NavLink} from "react-router-dom";
 
 
-export const CasinoButtons:FC<{buttonText:string}> = ({buttonText}) => {
+export const CasinoButtons:FC<{buttonText:string,casino_url:string | undefined,casino_name:string | undefined}> = ({buttonText,casino_url,casino_name}) => {
     return (
         <ButtonWrapper>
             <BonusButton
-                href="https://tonybet.lv/promotions/welcome-casino-cashback?btag=669146_67987921D95F461385C6412FF09A5FDE"
+                href={casino_url}
                 target="_blank">{buttonText}</BonusButton>
-            <ReviewButton to="/tonybet">Read Review</ReviewButton>
+            <ReviewButton to={`/${casino_name}`}>Read Review</ReviewButton>
         </ButtonWrapper>
     );
 };

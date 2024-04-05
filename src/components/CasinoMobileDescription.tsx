@@ -2,29 +2,31 @@ import styled from "styled-components";
 import {CasinoAdvantageList} from "./CasinoAdvantageList.tsx";
 import {ButtonWrapper, CasinoButtons} from "../layout/common/CasinoButtons.tsx";
 import StarRatings from "react-star-ratings";
+import {FC} from "react";
+import {CasinoInfoType} from "../api/dreamersApi.ts";
 
 
-export const CasinoMobileViewDescription = () => {
+export const CasinoMobileViewDescription:FC<{casinoInfo:CasinoInfoType | null}> = ({casinoInfo}) => {
     return (
         <CasinoMobileDescriptionWrapper>
             <AdvWrapperFlex>
-                <CasinoAdvantageList/>
+                <CasinoAdvantageList advantagesList={casinoInfo?.extra}/>
                 <RatingMobileWrapper>
-                    <RatingMobileText>9.9
+                    <RatingMobileText>{casinoInfo?.rating}
                         <PositionDiv>
-                            <StarRatings
+                            {casinoInfo && <StarRatings
                                 numberOfStars={10}
-                                rating={9.5}
+                                rating={casinoInfo?.rating > 9.5 ? 9.5 : casinoInfo?.rating}
                                 starRatedColor={"#FFC700"}
                                 starEmptyColor={"#D0D0D0"}
                                 starDimension="7px"
                                 starSpacing="0"
-                            />
+                            />}
                         </PositionDiv>
                     </RatingMobileText>
                 </RatingMobileWrapper>
             </AdvWrapperFlex>
-            <CasinoButtons buttonText={"Play Now"}/>
+            <CasinoButtons buttonText={"Play Now"} casino_url={casinoInfo?.casino_url} casino_name={casinoInfo?.name.trim().toLowerCase()}/>
         </CasinoMobileDescriptionWrapper>
     );
 };

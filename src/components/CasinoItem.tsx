@@ -1,26 +1,15 @@
 import styled, {css} from "styled-components";
-import casino1Webp from "./../assets/image/casino1.webp"
-import casino1Png from "./../assets/image/casino1.png"
 import StarRatings from "react-star-ratings";
-import bitcoin from "./../assets/icon/bitcoin.svg";
-import boleto from "./../assets/icon/boleto.svg";
-import mastercard from "./../assets/icon/mastercard.svg";
-import neteller from "./../assets/icon/neteller.svg";
-import rapidTransfer from "./../assets/icon/rapid-transfer.svg";
-import revolut from "./../assets/icon/revolut.svg";
-import skrill from "./../assets/icon/skrill.svg";
-import visa from "./../assets/icon/visa.svg";
-import webmoney from "./../assets/icon/webmoney.svg";
-import {useState} from "react";
+import {FC, useState} from "react";
 import {CasinoMobileViewDescription} from "./CasinoMobileDescription.tsx";
 import {AdvantagesList, CasinoAdvantageList} from "./CasinoAdvantageList.tsx";
 import {ButtonWrapper, CasinoButtons} from "../layout/common/CasinoButtons.tsx";
+import {CasinoInfoType} from "../api/dreamersApi.ts";
 
-export const CasinoItem = () => {
+export const CasinoItem:FC<{casinoInfo:CasinoInfoType | null}> = ({casinoInfo}) => {
     const [showPaymentPopUp, setShowPaymentPopUp] = useState(false);
     const onPopUpClickHandler = () => setShowPaymentPopUp(false)
     const onPopUpMouseLeaveHandler = () => setShowPaymentPopUp(false)
-
 
     return (
         <CasinoWrapper>
@@ -28,114 +17,61 @@ export const CasinoItem = () => {
             {/*    1*/}
             {/*</CasinoIndex>*/}
 
-            <CasinoLink href="https://media.affiliatestonybet.com/redirect.aspx?pid=169136&amp;bid=1983&amp;lpid=1302"
-                        target="_blank">
+            <CasinoLink href={casinoInfo?.casino_url}
+                        target="_blank"
+                        style={{ backgroundColor: casinoInfo?.logo_background ? casinoInfo?.logo_background : "#0a0a0a" }}>
                 <picture>
                     <source
-                        srcSet={casino1Webp}
+                        srcSet={casinoInfo?.logo_webp_url}
                         type="image/webp"/>
                     <img
-                        src={casino1Png} alt="tonybet"/>
+                        src={casinoInfo?.logo_url} alt={casinoInfo?.name}/>
                 </picture>
             </CasinoLink>
 
             <CasinoGift>
-                <h3>€120</h3>
-                <span>+ 500 FREE SPINS</span>
+                <h3>{casinoInfo?.bonus}</h3>
+                <span>{casinoInfo?.free_spins}</span>
             </CasinoGift>
 
             <RatingWrapper>
-                <RatingText>9.9
+                <RatingText>{casinoInfo?.rating}
                     <span> / 10</span>
                 </RatingText>
-                <StarRatings
-                    rating={4.5}
+                {casinoInfo && <StarRatings
+                    rating={casinoInfo?.rating/2}
                     starRatedColor={"#FFC700"}
                     starEmptyColor={"#D0D0D0"}
                     starDimension="20px"
                     starSpacing="2px"
-                />
+                />}
             </RatingWrapper>
 
-            <CasinoAdvantageList/>
+            <CasinoAdvantageList advantagesList={casinoInfo?.extra}/>
 
-            <CasinoMobileViewDescription/>
+            <CasinoMobileViewDescription casinoInfo={casinoInfo}/>
 
             <PaymentWrapper>
                 <PaymentsList>
-                    <PaymentItem>
-                        <img src={bitcoin} alt={"Bitcoin"} title={"Bitcoin"}/>
-                    </PaymentItem>
-                    <PaymentItem>
-                        <img src={boleto} alt={"Boleto"} title={"Boleto"}/>
-                    </PaymentItem>
-                    <PaymentItem>
-                        <img src={mastercard} alt={"Mastercard"} title={"Mastercard"}/>
-                    </PaymentItem>
-                    <PaymentItem>
-                        <img src={neteller} alt={"Neteller"} title={"Neteller"}/>
-                    </PaymentItem>
-                    <PaymentItem>
-                        <img src={rapidTransfer} alt={"Rapid-Transfer"} title={"Rapid-Transfer"}/>
-                    </PaymentItem>
-                    <PaymentItem>
-                        <img src={skrill} alt={"Skrill"} title={"Skrill"}/>
-                    </PaymentItem>
-                    {/*<PaymentItem>
-                    <img src={revolut} alt={"Revolut"} title={"Revolut"}/>
-                </PaymentItem>
-                <PaymentItem>
-                    <img src={visa} alt={"Visa"} title={"Visa"}/>
-                </PaymentItem>
-                <PaymentItem>
-                    <img src={webmoney} alt={"Webmoney"} title={"Webmoney"}/>
-                </PaymentItem>*/}
-
+                    {casinoInfo?.payment_methods.filter((_,i)=>i < 6).map((m,i)=>
+                        <PaymentItem key={i}>
+                            <img src={m.url} alt={m.alt} title={m.title}/>
+                        </PaymentItem>
+                    )}
                     <PaymentsPopUpList $showPaymentPopUp={showPaymentPopUp} onClick={onPopUpClickHandler}
                                        onMouseLeave={onPopUpMouseLeaveHandler}>
-                        <PaymentItem>
-                            <img src={bitcoin} alt={"Bitcoin"} title={"Bitcoin"}/>
-                        </PaymentItem>
-                        <PaymentItem>
-                            <img src={boleto} alt={"Boleto"} title={"Boleto"}/>
-                        </PaymentItem>
-                        <PaymentItem>
-                            <img src={mastercard} alt={"Mastercard"} title={"Mastercard"}/>
-                        </PaymentItem>
-                        <PaymentItem>
-                            <img src={neteller} alt={"Neteller"} title={"Neteller"}/>
-                        </PaymentItem>
-                        <PaymentItem>
-                            <img src={rapidTransfer} alt={"Rapid-Transfer"} title={"Rapid-Transfer"}/>
-                        </PaymentItem>
-                        <PaymentItem>
-                            <img src={skrill} alt={"Skrill"} title={"Skrill"}/>
-                        </PaymentItem>
-                        <PaymentItem>
-                            <img src={revolut} alt={"Revolut"} title={"Revolut"}/>
-                        </PaymentItem>
-                        <PaymentItem>
-                            <img src={visa} alt={"Visa"} title={"Visa"}/>
-                        </PaymentItem>
-                        <PaymentItem>
-                            <img src={webmoney} alt={"Webmoney"} title={"Webmoney"}/>
-                        </PaymentItem>
-                        <PaymentItem>
-                            <img src={revolut} alt={"Revolut"} title={"Revolut"}/>
-                        </PaymentItem>
-                        <PaymentItem>
-                            <img src={visa} alt={"Visa"} title={"Visa"}/>
-                        </PaymentItem>
-                        <PaymentItem>
-                            <img src={webmoney} alt={"Webmoney"} title={"Webmoney"}/>
-                        </PaymentItem>
+                        {casinoInfo?.payment_methods.map((m,i)=>
+                            <PaymentItem key={i}>
+                                <img src={m.url} alt={m.alt} title={m.title}/>
+                            </PaymentItem>
+                        )}
                     </PaymentsPopUpList>
 
                 </PaymentsList>
-                {true && <PaymentShowMore onClick={() => setShowPaymentPopUp(true)}>Show all</PaymentShowMore>}
+                {casinoInfo && casinoInfo?.payment_methods.length > 6 && <PaymentShowMore onClick={() => setShowPaymentPopUp(true)}>Show all</PaymentShowMore>}
             </PaymentWrapper>
 
-            <CasinoButtons buttonText={"Get Bonus"}/>
+            <CasinoButtons buttonText={"Get Bonus"} casino_url={casinoInfo?.casino_url} casino_name={casinoInfo?.name.trim().toLowerCase()}/>
 
         </CasinoWrapper>
     );
@@ -202,7 +138,6 @@ const CasinoWrapper = styled.div`
 `*/
 
 const CasinoLink = styled.a`
-  background: #0a0a0a;
   height: 120px;
   min-width: 120px;
   max-width: 120px;
@@ -381,6 +316,7 @@ export const PaymentsPopUpList = styled(PaymentsList)<{ $showPaymentPopUp: boole
 const PaymentShowMore = styled.span`
   padding-top: 10px;
   font-size: 12px;
+  font-weight: 500;
   display: block;
   text-align: center;
   text-decoration: underline;

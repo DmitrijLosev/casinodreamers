@@ -2,22 +2,15 @@ import list from "../assets/icon/list.svg";
 import styled from "styled-components";
 import {FC} from "react";
 
-export const CasinoAdvantageList: FC<{ isTitle?: boolean }> = ({isTitle = false}) => {
+export const CasinoAdvantageList: FC<{ isTitle?: boolean, advantagesList:[string,string,string] | undefined }> = ({isTitle = false,advantagesList}) => {
     return (<>
             {isTitle && <CasinoReviewTitle>Advantages</CasinoReviewTitle>}
             <AdvantagesList>
-                <li>
+                {advantagesList && advantagesList.map(adv=>
+                    <li key={adv}>
                     <img src={list} alt={"list item"}/>
-                    <p>Reputable Casino</p>
-                </li>
-                <li>
-                    <img src={list} alt={"list item"}/>
-                    <p>Safe Payments</p>
-                </li>
-                <li>
-                    <img src={list} alt={"list item"}/>
-                    <p>Great Bonuses</p>
-                </li>
+                    <p>{adv}</p>
+                </li>)}
             </AdvantagesList>
         </>
 
@@ -29,6 +22,7 @@ export const AdvantagesList = styled.ul`
   flex-direction: column;
   justify-content: center;
   gap: 6px;
+  font-weight: 500;
 
   & > li {
     display: flex;
