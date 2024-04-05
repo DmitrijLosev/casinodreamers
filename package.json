@@ -1,11 +1,11 @@
 {
   "name": "casninodreamers",
-  "homepage": "http://DmitrijLosev.github.io/casinodreamers/",
+  "homepage": "https://DmitrijLosev.github.io/casinodreamers/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite -- --https",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
@@ -28,6 +28,7 @@
     "react-router-hash-link": "^2.4.3",
     "react-star-rating": "^1.4.2",
     "react-star-ratings": "^2.3.0",
+    "react-top-loading-bar": "^2.3.1",
     "react-ts-typewriter": "^0.1.8-b",
     "styled-components": "^6.1.8"
   },
@@ -36,6 +37,7 @@
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
+    "@vitejs/plugin-basic-ssl": "^1.1.0",
     "@vitejs/plugin-react": "^4.2.1",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",

@@ -23,7 +23,7 @@ import starWebp from "../../assets/image/star.webp"
 import Typewriter from "react-ts-typewriter";
 import {FC, useState} from "react";
 import {CasinoInfoType} from "../../api/dreamersApi.ts";
-import {TailSpin} from "react-loader-spinner";
+
 
 
 type MainPropsType = {
@@ -61,14 +61,6 @@ export const Main :FC<MainPropsType> = ({setIsSearching,isSearching,casinoInfo})
                         />}
                         {isSearching === 2 && 'We have found the best casino for You'}
                     </StyledHeader>
-                    {isSearching < 1  && casinoInfo && <TailSpin
-                        visible={true}
-                        height="50"
-                        width="50"
-                        color="#3241A1"
-                        ariaLabel="tail-spin-loading"
-                        radius="1"
-                    />}
                     {isSearching < 2 && casinoInfo && <CasinoList showBestCasino = {showBestCasino} casinoInfo={casinoInfo}/> }
                     {isSearching === 2 && casinoInfo && <CasinoList showBestCasino = {true} casinoInfo={casinoInfo}/> }
                 </Article>

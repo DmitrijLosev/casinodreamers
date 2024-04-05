@@ -43,7 +43,7 @@ export const CasinoItem:FC<{casinoInfo:CasinoInfoType | null}> = ({casinoInfo}) 
                     starRatedColor={"#FFC700"}
                     starEmptyColor={"#D0D0D0"}
                     starDimension="20px"
-                    starSpacing="2px"
+                    starSpacing="1px"
                 />}
             </RatingWrapper>
 

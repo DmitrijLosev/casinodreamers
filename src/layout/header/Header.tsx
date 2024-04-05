@@ -5,21 +5,36 @@ import bg2440 from "../../assets/image/bg2440x500.jpg";
 import bg1440 from "../../assets/image/bg1440x400.jpg";
 import bgMobile from "../../assets/image/bg375x150.webp";
 import Typewriter from "react-ts-typewriter";
-import {FC} from "react";
+import {FC, useEffect, useState} from "react";
 import {NavLink, useLocation} from "react-router-dom";
+import {CasinoInfoType} from "../../api/dreamersApi.ts";
+import LoadingBar from "react-top-loading-bar";
 
 
-export const Header: FC<{ setIsSearching: (value: number) => void, isSearching: number }> = ({
-                                                                                                 setIsSearching,
-                                                                                                 isSearching
-                                                                                             }) => {
+export const Header: FC<{
+    setIsSearching: (value: number) => void, isSearching: number, casinoInfo: CasinoInfoType | null
+}> = ({setIsSearching, isSearching, casinoInfo}) => {
 
+    const [progress, setProgress] = useState(0)
     const path = useLocation().pathname;
     const onFinishedHandler = () => {
         setTimeout(() => {
             setIsSearching(1)
-        }, 500)
+        }, 100)
     }
+
+    useEffect(() => {
+        if (casinoInfo) return
+        const intervalId = setInterval(() => {
+            if (progress < 100)
+                setProgress(pr => pr + 10)
+            if (progress === 100)
+                setProgress(0)
+        }, 100)
+        return () => {
+            clearInterval(intervalId)
+        }
+    }, [casinoInfo, progress]);
 
     return (
         <>
@@ -45,6 +60,14 @@ export const Header: FC<{ setIsSearching: (value: number) => void, isSearching: 
                                            onFinished={onFinishedHandler}/></p>}
                     </HeaderTextWrapper>
                 </Container>
+                <LoadingBar
+                    color="#f11946" progress={progress}
+                />
+                {isSearching <= 2 && casinoInfo && <LoadingBar className={"progressing"}
+                                                               color="#f11946"
+                                                               progress={isSearching === 0 ? 33 : isSearching === 1 ? 66 : 100}
+                />
+                }
             </HeaderText>}
         </>
     );
@@ -54,7 +77,7 @@ const LogoHeader = styled.div`
   width: 100%;
   height: 80px;
   background: #1D2035;
-  
+
   & > div {
     display: flex;
     justify-content: start;
@@ -118,6 +141,7 @@ const HeaderText = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;*/
+
 
   background: url(${bg2440}) no-repeat center top;
   background-size: cover;
