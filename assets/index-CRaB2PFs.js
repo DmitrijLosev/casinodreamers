@@ -168,6 +168,7 @@ Error generating stack: `+o.message+`
   @media screen and (max-width: 375px) {
     background: url(${l2}) no-repeat center top;
     height: 120px;
+    background-position-x: unset;
   }
 
 `,an=R.div`
