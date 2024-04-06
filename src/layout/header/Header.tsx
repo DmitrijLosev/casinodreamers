@@ -174,6 +174,7 @@ const HeaderText = styled.div`
   @media screen and (max-width: 375px) {
     background: url(${bgMobile}) no-repeat center top;
     height: 120px;
+    background-position-x: unset;
   }
 
 `
