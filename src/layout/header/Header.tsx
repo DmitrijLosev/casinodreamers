@@ -46,6 +46,9 @@ export const Header: FC<{
                         </picture>
                     </NavLink>
                 </Container>
+                <LoadingBarWrapper>
+                    {!casinoInfo && <LoadingBar color="#f11946" progress={progress} containerStyle={{top:"78px", position:"absolute"}} />}
+                </LoadingBarWrapper>
             </LogoHeader>
             {path === "/" && <HeaderText>
                 <Container>
@@ -59,8 +62,8 @@ export const Header: FC<{
                     </HeaderTextWrapper>
                 </Container>
                 <LoadingBarWrapper>
-                    {!casinoInfo && <LoadingBar color="#f11946" progress={progress} containerStyle={{top:"78px"}} />}
-                    {isSearching <= 2 && casinoInfo && <LoadingBar color="#f11946" progress={isSearching === 0 ? 33 : isSearching === 1 ? 66 : 100}  containerStyle={{top:"78px"}}/>}
+                    {!casinoInfo && <LoadingBar color="#f11946" progress={progress} containerStyle={{top:"78px", position:"absolute"}} />}
+                    {isSearching <= 2 && casinoInfo && <LoadingBar color="#f11946" progress={isSearching === 0 ? 33 : isSearching === 1 ? 66 : 100}  containerStyle={{top:"78px", position:"absolute"}}/>}
                 </LoadingBarWrapper>
             </HeaderText>}
         </>
@@ -71,6 +74,7 @@ const LogoHeader = styled.div`
   width: 100%;
   height: 80px;
   background: #1D2035;
+  position: relative;
 
   & > div {
     display: flex;
@@ -135,7 +139,7 @@ const HeaderText = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;*/
-  
+ 
   background: url(${bg2440}) no-repeat center top;
   background-size: cover;
   width: 100%;
@@ -226,7 +230,6 @@ const LoadingBarWrapper = styled.div`
     @media screen and (max-width: 1250px) {
       top:58px !important;
     }
-    position: absolute;
   }
   
   & > div > div > div {
