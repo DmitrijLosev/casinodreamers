@@ -3,7 +3,7 @@ import logoPng from "../../assets/image/logo.png";
 import logoWebp from "../../assets/image/logo.webp";
 import bg2440 from "../../assets/image/bg2440x500.jpg";
 import bg1440 from "../../assets/image/bg1440x400.jpg";
-import bgMobile from "../../assets/image/bg375x150.webp";
+import bgMobile from "../../assets/image/bg375x150.jpg";
 import Typewriter from "react-ts-typewriter";
 import {FC, useEffect, useState} from "react";
 import {NavLink, useLocation} from "react-router-dom";
@@ -63,7 +63,7 @@ export const Header: FC<{
                 </Container>
                 <LoadingBarWrapper>
                     {!casinoInfo && <LoadingBar color="#f11946" progress={progress} containerStyle={{top:"78px", position:"absolute"}} />}
-                    {isSearching <= 2 && casinoInfo && <LoadingBar color="#f11946" progress={isSearching === 0 ? 33 : isSearching === 1 ? 66 : 100}  containerStyle={{top:"78px", position:"absolute"}}/>}
+                    {isSearching <= 2 && casinoInfo && <LoadingBar color="#f11946" progress={isSearching === 0 ? 33 : isSearching === 1 ? 66 : 100}  loaderSpeed={2500} containerStyle={{top:"78px", position:"absolute"}}/>}
                 </LoadingBarWrapper>
             </HeaderText>}
         </>
