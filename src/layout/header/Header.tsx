@@ -47,7 +47,7 @@ export const Header: FC<{
                     </NavLink>
                 </Container>
                 <LoadingBarWrapper>
-                    {!casinoInfo && <LoadingBar color="#f11946" progress={progress} containerStyle={{top:"78px", position:"absolute"}} />}
+                    {!casinoInfo && <LoadingBar color="rgb(255, 255, 255, 0.6)" progress={progress} containerStyle={{top:"78px", position:"absolute"}} />}
                 </LoadingBarWrapper>
             </LogoHeader>
             {path === "/" && <HeaderText>
@@ -62,8 +62,8 @@ export const Header: FC<{
                     </HeaderTextWrapper>
                 </Container>
                 <LoadingBarWrapper>
-                    {!casinoInfo && <LoadingBar color="#f11946" progress={progress} containerStyle={{top:"78px", position:"absolute"}} />}
-                    {isSearching <= 2 && casinoInfo && <LoadingBar color="#f11946" progress={isSearching === 0 ? 33 : isSearching === 1 ? 66 : 100}  loaderSpeed={2500} containerStyle={{top:"78px", position:"absolute"}}/>}
+                    {!casinoInfo && <LoadingBar color="rgb(255, 255, 255, 0.6)" progress={progress} containerStyle={{top:"78px", position:"absolute"}} />}
+                    {isSearching <= 2 && casinoInfo && <LoadingBar color="rgb(255, 255, 255, 0.6)" progress={isSearching === 0 ? 33 : isSearching === 1 ? 66 : 100}  loaderSpeed={2500} containerStyle={{top:"78px", position:"absolute"}}/>}
                 </LoadingBarWrapper>
             </HeaderText>}
         </>
