@@ -9,7 +9,7 @@ const instance = axios.create({
 
 export const dreamersApi = {
     getCasino() {
-        return instance.get<CasinoInfoType[], AxiosResponse<CasinoInfoType[]>>("casinsos")
+        return instance.get<CasinoInfoType[], AxiosResponse<CasinoInfoType[]>>("casinos")
     }
 }
 
