@@ -65,5 +65,5 @@ export default App
 
 
 const SpinDiv = styled.div`
-  height: 30vh;
+  height: 40vh;
 `
