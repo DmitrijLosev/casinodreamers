@@ -6,10 +6,13 @@ import youtube from "../../assets/icon/youtube.svg";
 import begamble from "../../assets/icon/begamble.svg";
 import icon18 from "../../assets/icon/icon18.svg";
 import {NavLink} from "react-router-dom";
+import {FC} from "react";
 
-export const Footer = () => {
+
+export const Footer:FC<{errorMessage:null | string}> = ({errorMessage}) => {
     return (
         <StyledFooter>
+            {errorMessage && <ErrorMessage><FooterContainer>{errorMessage.toLowerCase()}</FooterContainer></ErrorMessage>}
             <FooterContainer>
                 <FooterContantWrapper>
                     <InfoFooterWrapper>
@@ -82,6 +85,20 @@ const StyledFooter = styled.footer`
   @media screen and (max-width: 550px) {
     margin: 100px 0 0 0 ;
   }
+  position: relative;
+`
+
+const ErrorMessage = styled.div`
+  position: absolute;
+  background-color: #F9D2D2;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 12px;
+  line-height: 15px;
+  padding: 4px 0;
+  top: -23px;
+  width: 100%;
+  color: #272727;
 `
 
 const FooterContainer = styled(Container)`

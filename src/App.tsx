@@ -18,8 +18,8 @@ function App() {
 
     const [isSearchingCasino, setIsSearching] = useState(0)
     const [casinoInfo, setCasinoInfo] = useState<null | CasinoInfoType>(null)
+    const [errorMessage, setErrorMessage] = useState<null | string>(null)
 
-    console.log(casinoInfo)
 
     useEffect(() => {
             const fetchData = async () => {
@@ -27,6 +27,7 @@ function App() {
                 try {
                     const response = await dreamersApi.getCasino();
                     setCasinoInfo(response.data[0]);
+                    setErrorMessage(null)
                 } catch (e) {
                     let errorMessage: string;
                     if (isAxiosError(e)) {
@@ -34,7 +35,7 @@ function App() {
                     } else {
                         errorMessage = (e as Error).message
                     }
-                    console.log(errorMessage);
+                    setErrorMessage(errorMessage);
                 }
             };
 
@@ -56,7 +57,7 @@ function App() {
                            element={<CasinoReview casinoInfo={casinoInfo}/>}/>
                     <Route path={"*"} element={<Error404/>}/>
                 </Routes> : <SpinDiv></SpinDiv>}
-            <Footer/>
+            <Footer errorMessage = {errorMessage}/>
         </>
     )
 }
